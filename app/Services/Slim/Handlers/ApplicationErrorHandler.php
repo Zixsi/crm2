@@ -9,6 +9,7 @@ final class ApplicationErrorHandler extends ErrorHandler
 {
 	private array $ignoreToLogExceptions = [];
 
+	#[\Override]
 	protected function writeToErrorLog(): void
     {
         $renderer = $this->callableResolver->resolve($this->logErrorRenderer);

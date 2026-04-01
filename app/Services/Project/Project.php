@@ -9,8 +9,8 @@ final class Project
 	public function __construct(
 		public ?int $id = null,
 		public string $name,
-		public \DateTimeImmutable $startDate,
-		public \DateTimeImmutable $endDate,
+		public DateTimeImmutable $startDate,
+		public DateTimeImmutable $endDate,
 		public int $clientId,
 		public string $description = '',
 		public bool $deleted = false
@@ -29,10 +29,6 @@ final class Project
 
 	private function getStatus(): ProjectStatus
 	{
-		if ($this->deleted) {
-			return ProjectStatus::DELETED;
-		}
-
 		if ($this->endDate < new DateTimeImmutable('today')) {
 			return ProjectStatus::COMPLETED;
 		}

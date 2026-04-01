@@ -95,7 +95,7 @@ final class TaskService
 		$task->projectId = (int) ($params['project_id'] ?? $task->projectId);
 		$task->description = (string) ($params['description'] ?? $task->description);
 		$task->status = 
-			TaskStatus::tryFrom((string) $params['status'] ?? '') 
+			TaskStatus::tryFrom((string) ($params['status'] ?? '')) 
 			? TaskStatus::from((string) $params['status']) 
 			: $task->status;
 

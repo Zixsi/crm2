@@ -20,6 +20,7 @@ final class TwigErrorRenderer extends AbstractErrorRenderer
 
 	}
 
+    #[\Override]
     public function __invoke(Throwable $exception, bool $displayErrorDetails): string
     {
 		$context = [
