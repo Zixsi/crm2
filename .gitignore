@@ -1,0 +1,7 @@
+.qwen
+QWEN.md
+
+.env
+var/log/*
+!var/log/.gitkeep
+/vendor

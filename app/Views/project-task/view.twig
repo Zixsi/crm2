@@ -1,0 +1,77 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div class="d-flex justify-content-between align-items-center mb-4">
+		<h1 class="mb-0">Карточка задачи</h1>
+		<div>
+			<a href="{{ urlFor('tasks-edit', {projectId: item.projectId, id: item.id}) }}" class="btn btn-primary">
+				<i class="fas fa-edit me-1"></i> Редактировать
+			</a>
+			<a href="{{ urlFor('projects-view', {id: item.projectId}) }}" class="btn btn-outline-secondary">
+				<i class="fas fa-arrow-left me-1"></i> Назад к списку
+			</a>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-8">
+			<div class="card mb-4">
+				<div class="card-header">
+					<i class="fas fa-box me-1"></i> Основная информация
+				</div>
+				<div class="card-body">
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="text-muted small">Наименование</label>
+							<p class="mb-0 fw-bold">{{ item.name }}</p>
+						</div>
+						<div class="col-md-6">
+							<label class="text-muted small">Статус</label>
+							<p class="mb-0">
+								<span class="badge {{ item.getBadgeClass() }}">
+									{{ item.getStatusLabel() }}
+								</span>
+							</p>
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col-md-6">
+							<label class="text-muted small">Проект</label>
+							<p class="mb-0">
+								<a href="{{ urlFor('projects-view', {id: item.projectId}) }}" class="text-decoration-none">
+									{{ projects[item.projectId].name }}
+								</a>
+							</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<label class="text-muted small">Описание</label>
+							<p class="mb-0">
+								{% if item.description %}
+									{{ item.description }}
+								{% else %}
+									<span class="text-muted">—</span>
+								{% endif %}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-4">
+			<div class="card mb-4">
+				<div class="card-header">
+					<i class="fas fa-clock me-1"></i> Даты
+				</div>
+				<div class="card-body">
+					<div>
+						<label class="text-muted small">Срок выполнения</label>
+						<p class="mb-0">{{ item.endDate|date('d.m.Y') }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

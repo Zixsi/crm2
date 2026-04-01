@@ -1,0 +1,21 @@
+{% extends "error.twig" %}
+
+{% block content %}
+	<h1>{{ title }}</h1>
+	<div>
+	{% if(displayErrorDetails) %}
+		<p>The application could not run because of the following error:</p>
+		<h2>Details</h2>
+		<div><strong>Type:</strong> {{ details.type }}</div>
+		<div><strong>Code:</strong> {{ details.code }}</div>
+		<div><strong>Message:</strong> {{ details.message }}</div>
+		<div><strong>File:</strong> {{ details.file }}</div>
+		<div><strong>Line:</strong> {{ details.line }}</div>
+		<h2>Trace</h2>
+		<pre>{{ details.trace }}</pre>
+	{% else %}
+		<p>{{ description }}</p>
+	{% endif %}
+	</div>
+	<a href="#" onclick="window.history.go(-1)">Go Back</a>
+{% endblock %}

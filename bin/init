@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+
+<?php
+
+use App\Services\User\UserService;
+use Psr\Container\ContainerInterface;
+
+/** @var ContainerInterface $container */
+$container = include_once dirname(__DIR__) . '/app/bootstrap.php';
+
+/** @var UserService $userService */
+$userService = $container->get(UserService::class);
+$user = $userService->create('manager', 'manager');
+
+var_dump($user->getId());
